@@ -1,15 +1,22 @@
 <div class="form-container">
-    <form action="" method="post">
+    <% if(errors.length > 0) {%> 
+        <div class="errors">
+            <% errors.forEach(error => { %> 
+            <span class="error"><%= error.msg;  %> </span>
+            <% })  %> 
+        </div>
+    <% } %> 
+    <form action="/register" method="post">
         <div class="group">
             <h3>Create new account</h3>
         </div>
         <div class="group">
             <label for="name">Name</label>
-            <input type="text" name="name" id="name" class="control" placeholder="Name">
+            <input type="text" name="name" id="name" class="control" placeholder="Name" value="<% if(inputs){ %> <%= inputs.name  %> <% } %>">
         </div>
         <div class="group">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" class="control" placeholder="Email">
+            <input type="email" name="email" id="email" class="control" placeholder="Email" value="<% if(inputs){ %> <%= inputs.email  %> <% } %>">
         </div>
         <div class="group">
             <label for="password">Password</label>

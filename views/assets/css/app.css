@@ -13,6 +13,8 @@
     --whiteLight: #fcfcfc;
     --green1: #2ecc71;
     --green2: #badc58;
+    --redLight: #f8aeae;
+    --redDark: #622d2d;
 
 }
 
@@ -81,6 +83,7 @@ body{
     height: calc(100vh - 70px);
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 form{
@@ -89,6 +92,19 @@ form{
     border-radius: 3px;
     box-shadow: 0 16px 32px 0 rgba(221, 230, 237, .4);
     padding: 25px;
+}
+.errors{
+    width: 70%;
+    padding: 14px 18px;
+    margin-bottom: 6px;
+    background: var(--redLight);
+    color: var(--redDark);
+    border-left: 4px solid var(--redDark);
+}
+.error{
+    display: block;
+    font-size: 14px;
+    margin-bottom: 4px;
 }
 
 label{
@@ -115,6 +131,7 @@ label{
 .btn {
     border: none;
     outline: none;
+    cursor: pointer;
 }
 
 .btn-sweet{

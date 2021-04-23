@@ -5,3 +5,5 @@
 
 
 * npm i -D nodemon
+
+* npm i express-validator
