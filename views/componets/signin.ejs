@@ -1,4 +1,7 @@
 <div class="form-container">
+    <% if(locals.message.success) { %>
+        <div class="alert-success"><%= message.success %> </div>
+    <% } %>  
     <form action="" method="post">
         <div class="group">
             <h3>User Login</h3>

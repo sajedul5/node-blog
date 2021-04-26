@@ -7,3 +7,13 @@
 * npm i -D nodemon
 
 * npm i express-validator
+
+* npm i mongoose
+
+* npm i dotenv
+
+* npm i bcrypt
+
+* npm i express-flash
+
+* npm i express-session

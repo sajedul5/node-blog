@@ -101,6 +101,15 @@ form{
     color: var(--redDark);
     border-left: 4px solid var(--redDark);
 }
+
+.alert-success{
+    width: 70%;
+    padding: 14px 18px;
+    margin-bottom: 6px;
+    background: var(--green2);
+    color: var(--whiteLight);
+    border-left: 4px solid var(--green1);
+}
 .error{
     display: block;
     font-size: 14px;
