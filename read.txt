@@ -17,3 +17,7 @@
 * npm i express-flash
 
 * npm i express-session
+
+* npm i jsonwebtoken
+
+* npm i connect-mongodb-session

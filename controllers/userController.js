@@ -1,5 +1,6 @@
 const {check, validationResult} = require('express-validator');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const Users = require('../models/User');
 
 
@@ -12,11 +13,45 @@ const loadSignup = (req, res) => {
 
 const loadSignin = (req, res) => {
     const title = 'User Login'
-    res.render('login', {title});
+    res.render('login', {title, errors: [], inputs: {}});
+}
+
+const signinValidation =  [
+    check('email').not().isEmpty().withMessage('Valid email is required.'),
+    check('password').not().isEmpty().withMessage('Password is required'),
+]
+
+
+const postSignin = async (req, res) => {
+    const {email, password} = req.body;
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        res.render('login', {title: 'User Signin', errors: errors.array(), inputs: req.body });
+    }else{
+        const checkEmail = await Users.findOne({email});
+        if(checkEmail !== null){
+            const id = checkEmail._id;
+            const dbPassword = checkEmail.password;
+            const passwordVerify = await bcrypt.compare(password, dbPassword);
+            if(passwordVerify){
+                // Create Token
+                const token = jwt.sign({userID: id}, process.env.JWT_SCRECT, {expiresIn: '7d'});
+                console.log('token', token);
+                // Create session variable
+                req.session.user = token;
+                res.redirect('/profile');
+
+            }else{
+                res.render('login', {title: 'User Signin', errors: [{msg: 'Your password is wrong!'}], inputs: req.body });
+            }
+        }else{
+            res.render('login', {title: 'User Signin', errors: [{msg: 'Email is not found!'}], inputs: req.body });
+        }
+    }
 }
 
 
-const registerValidation =  [
+const signupValidation =  [
     check('name').isLength({min: 3}).withMessage('Name is required & must be 3 characters long'),
     check('email').isEmail().withMessage('Valid email is required.'),
     check('password').isLength({min: 6}).withMessage('Password must be 6 characters long'),
@@ -65,6 +100,8 @@ const postRegister = async (req, res) => {
 module.exports = {
     loadSignup,
     loadSignin,
-    registerValidation,
+    signupValidation,
     postRegister,
+    postSignin,
+    signinValidation,
 }

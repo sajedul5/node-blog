@@ -1,14 +1,21 @@
 <div class="form-container">
     <% if(locals.message.success) { %>
         <div class="alert-success"><%= message.success %> </div>
-    <% } %>  
-    <form action="" method="post">
+    <% } %>
+    <% if(errors.length > 0) {%> 
+        <div class="errors">
+            <% errors.forEach(error => { %> 
+            <span class="error"><%= error.msg;  %> </span>
+            <% })  %> 
+        </div>
+    <% } %>   
+    <form action="/postSignin" method="post">
         <div class="group">
             <h3>User Login</h3>
         </div>
         <div class="group">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" class="control" placeholder="Email">
+            <input type="email" name="email" id="email" class="control" placeholder="Email" value="<% if(inputs){ %> <%= inputs.email  %> <% } %>">
         </div>
         <div class="group">
             <label for="password">Password</label>
