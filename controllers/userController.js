@@ -7,13 +7,13 @@ const Users = require('../models/User');
 const loadSignup = (req, res) => {
     const title = 'Create new account';
     const errors = [];
-    res.render('register', {title, errors, inputs: {}});
+    res.render('register', {title, errors, inputs: {}, signin: false});
 }
 
 
 const loadSignin = (req, res) => {
-    const title = 'User Login'
-    res.render('login', {title, errors: [], inputs: {}});
+    const title = 'User Signin'
+    res.render('login', {title, errors: [], inputs: {}, signin: false});
 }
 
 const signinValidation =  [
@@ -26,7 +26,7 @@ const postSignin = async (req, res) => {
     const {email, password} = req.body;
     const errors = validationResult(req);
     if(!errors.isEmpty()){
-        res.render('login', {title: 'User Signin', errors: errors.array(), inputs: req.body });
+        res.render('login', {title: 'User Signin', errors: errors.array(), inputs: req.body, signin: false });
     }else{
         const checkEmail = await Users.findOne({email});
         if(checkEmail !== null){
@@ -36,16 +36,16 @@ const postSignin = async (req, res) => {
             if(passwordVerify){
                 // Create Token
                 const token = jwt.sign({userID: id}, process.env.JWT_SCRECT, {expiresIn: '7d'});
-                console.log('token', token);
+                //console.log('token', token);
                 // Create session variable
                 req.session.user = token;
                 res.redirect('/profile');
 
             }else{
-                res.render('login', {title: 'User Signin', errors: [{msg: 'Your password is wrong!'}], inputs: req.body });
+                res.render('login', {title: 'User Signin', errors: [{msg: 'Your password is wrong!'}], inputs: req.body, signin: false });
             }
         }else{
-            res.render('login', {title: 'User Signin', errors: [{msg: 'Email is not found!'}], inputs: req.body });
+            res.render('login', {title: 'User Signin', errors: [{msg: 'Email is not found!'}], inputs: req.body, signin: false });
         }
     }
 }
@@ -63,7 +63,7 @@ const postRegister = async (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         const title = 'Create new account';
-        res.render('register', {title, errors: errors.array(), inputs: req.body });
+        res.render('register', {title, errors: errors.array(), inputs: req.body, signin: false });
     }else{
         try{
             const userEmail = await Users.findOne({email});
@@ -79,13 +79,13 @@ const postRegister = async (req, res) => {
                 try{
                     const createUser = await newUser.save();
                     req.flash('success', 'Your account has been created successfully!');
-                    res.redirect('/login');
+                    res.redirect('/signin');
                 }catch (err){
                     console.log(err.message);
                 }
 
             }else{
-                res.render('register', {title: 'Create new account', errors: [{msg: 'Email is alreay exsit'}], inputs: req.body });
+                res.render('register', {title: 'Create new account', errors: [{msg: 'Email is alreay exsit'}], inputs: req.body, signin: false });
             }
         }catch (err){
             console.log(err.message);

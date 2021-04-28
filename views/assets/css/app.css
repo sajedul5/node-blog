@@ -156,3 +156,52 @@ label{
     font-family: 400;
     font-size: 18px;
 }
+
+
+/* Profile */
+
+.profile{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.profileCard {
+    display: flex;
+    width: 400px;
+    background: var(--whiteColor);
+    padding: 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 16px 32px 0 rgba(221, 230, 237, .4);
+    border-bottom: 4px solid var(--green1);
+
+}
+
+.profileCard span{
+    display: flex;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(to right, var(--green1), var(--green2));
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    color: var(--whiteColor);
+    font-size: 30px;
+    font-weight: 600;
+    
+}
+
+
+.profileName {
+    margin: 12px 0;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.profileEmail{
+    font-size: 15px;
+}

@@ -8,6 +8,12 @@
 </head>
 <body>
     <%- include('./componets/nav.ejs') %>
-    <h1>Profile</h1>
+    <div class="profile">
+        <div class="profileCard">
+            <div class="profileImage"><span><%= user.name.charAt(0) %> </span></div>
+            <div class="profileName"><%= user.name %></div>
+            <div class="profileEmail"><%= user.email %></div>
+        </div>
+    </div>
 </body>
 </html>
