@@ -1,4 +1,5 @@
 const Users = require('../models/User');
+const Posts = require('../models/Post');
 
 
 const profile = async (req, res) => {
@@ -19,5 +20,5 @@ const signout = (req, res) => {
 
 module.exports = {
     profile,
-    signout
+    signout,
 }

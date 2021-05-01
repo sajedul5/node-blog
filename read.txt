@@ -21,3 +21,7 @@
 * npm i jsonwebtoken
 
 * npm i connect-mongodb-session
+
+* npm i formidable
+
+* npm i uuid

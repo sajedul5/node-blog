@@ -86,7 +86,7 @@ body{
     flex-direction: column;
 }
 
-form{
+.accountForms{
     width: 70%;
     background: var(--whiteColor);
     border-radius: 3px;
@@ -204,4 +204,78 @@ label{
 
 .profileEmail{
     font-size: 15px;
+}
+
+
+/* Create Post */
+
+.postFormContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    flex-direction: column;
+}
+
+.errors-helper{
+    width: 450px !important;
+}
+
+.postFormContainer form{
+    width: 450px;
+    background: var(--whiteColor);
+    padding: 25px;
+}
+
+#imageLabel {
+    display: none;
+}
+
+.fileLabel {
+    width: 100%;
+    padding: 13px 11px;
+    border: 1px solid var(--green1);
+    border-radius: 2px;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    overflow: hidden;
+    color: var(--green1);
+}
+
+
+
+/* header */
+
+#header{
+    width: 100%;
+    padding: 0 104px;
+    height: 350px;
+    margin-top: 20px;
+}
+
+.bannerIamge{
+    width: 100%;
+    background: url('../img/img.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 350px;
+    display: flex;
+    background-color: rgba(0,0,0, .7);
+    background-blend-mode: overlay;
+    color: var(--whiteColor);
+    align-items: center;
+    justify-content: center;
+}
+
+.bannerIamge div{
+    width: 400px;
+}
+
+.bannerIamge div h1{
+    font-size: 40px;
+}
+
+.bannerIamge div p{
+    margin-top: 10px;
 }

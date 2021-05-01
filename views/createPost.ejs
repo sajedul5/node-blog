@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> </title>
+    <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+    <%- include('./componets/nav.ejs') %>
+    <div class="postFormContainer">
+        <% if(errors.length > 0) {%> 
+            <div class="errors errors-helper">
+                <% errors.forEach(error => { %> 
+                <span class="error"><%= error.msg;  %> </span>
+                <% })  %> 
+            </div>
+        <% } %> 
+        <%- include('./componets/postForm.ejs') %> 
+    </div>
+</body>
+<script>
+    let imageName = document.getElementById('imageLabel');
+    const label = document.querySelector('.fileLabel');
+    imageName.addEventListener('change', () => {
+        let val = imageName.value;
+        let split = val.split('\\');
+        let index = split.length - 1;
+        label.innerText = split[index];
+    })
+</script>
+</html>
