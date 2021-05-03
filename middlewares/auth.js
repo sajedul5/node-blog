@@ -5,12 +5,12 @@ const auth = (req, res, next) => {
         const token = req.session.user;
         const verified = jwt.verify(token, process.env.JWT_SCRECT);
         if(!verified){
-            res.redirect('/signin');
+           return res.redirect('/signin');
         }else{
             req.id = verified.userID;
         }
     }else{
-        res.redirect('/signin');
+       return res.redirect('/signin');
     }
     next()
 }
@@ -21,7 +21,7 @@ const stopSignin = (req, res, next) => {
         const token = req.session.user;
         const verified = jwt.verify(token, process.env.JWT_SCRECT);
         if(verified){
-            res.redirect('/profile');
+           return res.redirect('/profile');
         }
     }
     next()

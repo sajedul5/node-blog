@@ -3,9 +3,10 @@ const {v4: uuidv4} = require('uuid');
 const fs = require('fs');
 const Users = require('../models/User');
 const Posts = require('../models/Post');
+const dateFormate = require('dateformat');
 
 const postForm = (req, res) => {
-    res.render('createPost', {title: 'Create new post', signin: true, errors: [], title:'', body: ''});
+    res.render('createPost', {title: 'Create new post', signin: true, errors: [], input_title:'', body: ''});
 }
 
 
@@ -32,7 +33,7 @@ const storePost = (req, res) => {
         }
 
         if(errors.length !== 0) {
-            res.render('createPost', {title: 'Create new post', signin: true, errors, title, body});
+            res.render('createPost', {title: 'Create new post', signin: true, errors, input_title: title, body});
         }else {
             files.image.name = uuidv4() + '.'+ imageExt;
             const oldPath = files.image.path;
@@ -58,7 +59,8 @@ const storePost = (req, res) => {
                                         try {
                                             const result = await newPost.save();
                                             if(result){
-                                                res.send('post created!');
+                                                req.flash('success', 'Post has been created successfully!');
+                                                res.redirect('/posts');
                                             }
 
                                         }catch (err){
@@ -79,8 +81,10 @@ const storePost = (req, res) => {
 }
 
 
-const posts = (req, res) => {
-    res.render('Post', {title: 'Post', signin: true});
+const posts = async (req, res) => {
+    const id = req.id;
+    const allPost = await Posts.find({userID: id}).sort({updatedAt: -1});
+    res.render('Post', {title: 'Post', signin: true, posts: allPost, formate: dateFormate});
 }
 
 

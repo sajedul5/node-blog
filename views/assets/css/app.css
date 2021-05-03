@@ -279,3 +279,86 @@ label{
 .bannerIamge div p{
     margin-top: 10px;
 }
+
+.msg{
+    margin: 15px 0;
+}
+
+/* Helper Class */
+
+
+.container{
+    padding: 0 104px;
+}
+
+.p-20 {
+    padding: 20px;
+}
+
+/* Posts style */
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.post {
+    overflow: hidden;
+    width: 100%;
+    box-shadow: 0 16px 32px 0 rgba(221, 230, 237, .4);
+    text-align: center;
+}
+
+.postImg{
+    width: 100%;
+    height: 150px;
+    min-width: 150px;
+}
+
+.postImg img{
+    width: 100%;
+    height: 150px;
+    transition: all .5s linear;
+}
+
+.postImg img:hover{
+    transform: scale(1.1);
+}
+
+.postTitle {
+    margin: 12px 9px;
+    height: 50px;
+}
+
+.postTitle h4 a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.postBody {
+    padding: 14px 5px;
+}
+
+.postFooter{
+    width: 100%;
+    padding: 8px 8px;
+    display: flex;
+    border-bottom: 4px solid var(--green1);
+}
+
+.creator{
+    display: inline-block;
+    width: 50%;
+    text-align: left;
+}
+
+.postTime {
+    width: 50%;
+    text-align: right;
+}
